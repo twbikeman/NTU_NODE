@@ -1,4 +1,5 @@
-let x = 10;
-console.log("hello world",x);
-console.log("$PWD");
-__dirname = /home;
+let express = require("express");
+let app = express()
+app.listen(3000, function(){
+    console.log("server started");
+    });

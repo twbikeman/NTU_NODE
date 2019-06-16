@@ -22,3 +22,22 @@ HTML DOM (document object model)
 
 __dirname
 console.log(__dirname)
+
+require()
+
+module.exports = result;
+
+
+module.exports = function(more) {return result + more};
+
+npm init -y
+
+npm install X --save
+
+--save
+"dependencies:{}"
+
+
+app.listen(3000, function(){
+    console.log("server started");
+    });
