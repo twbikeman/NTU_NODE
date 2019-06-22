@@ -41,3 +41,19 @@ npm install X --save
 app.listen(3000, function(){
     console.log("server started");
     });
+
+
+aws
+
+res.json()
+
+command + option + i
+
+req.method
+req.hostname
+req.path
+req.ip
+req.get("Accept-Language")
+res.download()
+
+.startsWith("zh")
