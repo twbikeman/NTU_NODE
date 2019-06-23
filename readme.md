@@ -57,3 +57,22 @@ req.get("Accept-Language")
 res.download()
 
 .startsWith("zh")
+
+?parameter=?
+
+res.download("./imgs/" + filename);
+
+app.get("/picture/:filename", fucntion(req, res){});
+
+
+res.sendFile(); <--- absolute path
+
+app.use(express.static("public"));
+
+app.post()
+
+req.body.?
+
+let parser = require("body-parser");
+
+app.use(parser.urlencoded({extended:true}));
