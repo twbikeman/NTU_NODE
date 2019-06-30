@@ -54,6 +54,7 @@ req.hostname
 req.path
 req.ip
 req.get("Accept-Language")
+
 res.download()
 
 .startsWith("zh")
@@ -69,6 +70,9 @@ res.sendFile(); <--- absolute path
 
 app.use(express.static("public"));
 
+
+eq.query.?
+
 app.post()
 
 req.body.?
@@ -76,3 +80,27 @@ req.body.?
 let parser = require("body-parser");
 
 app.use(parser.urlencoded({extended:true}));
+
+
+let admin = require("firebase-admin");
+
+let serviceAccount = require("./key.json");
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://myproject0520.firebaseio.com"
+});
+
+
+.collection()
+.doc()
+
+
+.then()
+.catch()
+
+ref.set({},{merger: true});
+
+
+let ref = db.collection("message");
+ref.add();

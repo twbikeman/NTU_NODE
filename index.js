@@ -57,16 +57,98 @@ app.use(express.static("public"));
 
 app.use(parser.urlencoded({extended:true}));
 
+app.post('/signin', function(req, res){
+    let email = req.body.email;
+    let password = req.body.password;
+    let tiem = Date.now();
+    // let ref = db.collection("message").doc("nsHgAqrBXMU9eatAoQ61");
+    let ref = db.collection("message");
+
+    ref.where("email", "=", email).get().then(function(snapshot){
+        if (snapshot.empty) {
+            res.send("Error");
+        } else {
+            let user =  snapshot.docs[0].data();
+            if (user.password == password) {
+                res.send("log OK");
+            } else {
+                res.send("password Error");
+            }
+        }
+    }).catch(function(error){
+        res.send("Error");
+    });
+
+    // ref.get().then(function(snapshot){
+    //     let data = []
+    //     snapshot.forEach(function(docRef){
+    //         data.push(docRef.data());
+    //     });
+    //     res.send(data);
+            
+    // }).catch(function(error){
+    //     res.setDefaultEncoding("Error");
+    // });
+    // ref.add()
+
+});
+
 app.post('/signup', function(req, res){
     let email = req.body.email;
     let password = req.body.password;
-    let ref = db.collection("message").doc("test");
-    ref.set({
-        email: email,
-        password: password
+    let time = Date.now();
+    // let ref = db.collection("message").doc(time.toString());
+    // ref.set({
+    //     email: email,
+    //     password: password,
+    //     time: time
 
+    // },{merger: true}).then(function(){
+    //     res.send("OK");
+    // }).catch(function(){
+    //     res.send("Error");
+    // });
+
+    let ref = db.collection("message");
+
+
+    ref.where("email", "=", email).get().then(function(snapshot){
+        if (snapshot.empty) {
+            ref.add({
+                email: email,
+                password: password,
+                time: time
+            }).then(function(){
+                res.send("OK");
+            }).catch(function(){
+                res.redirect("./form.html");
+            });
+        
+        } else {
+           
+            res.send("email duplicates");
+        }
+    }).catch(function(error){
+        res.send("Error");
     });
-    res.send(email + ',' + password);
+
+
+
+
+
+    ref.add({
+        email: email,
+        password: password,
+        time: time
+    }).then(function(){
+        res.send("OK");
+    }).catch(function(){
+        res.redirect("./form.html");
+    });
+
+
+
+    // res.send(email + ',' + password);
 
 
 });
