@@ -17,6 +17,41 @@ function ajax(method, src, args, callback){
 		req.send();
 	}
 }
+
+function post() {
+	let name = document.querySelector("#name").value;
+	let content = document.querySelector("#content").value;
+	// console.log(name, content);
+	ajax("post", "/postMessage", "name=" + name + "&content=" + content, function(){
+		// console.log(this.responseText);
+		// alert("ok");
+		get();
+	});
+}
+
+
+function get() {
+	ajax("get", "/getMessages", "", function(){
+		let data = JSON.parse(this.responseText);
+		show(data);
+	});
+}
+
+function show(data) {
+	let board=document.querySelector("#board");
+	board.innerHTML = "";
+
+	let message;
+	for (let i = 0; i < data.length; i++) {
+		message = data[i];
+		console.log(message);
+		board.innerHTML = message.name.bold() + ": " + message.content + "<ht/>" + board.innerHTML;
+	}
+}
+
+
+window.addEventListener("load", get);
+
 </script>
 </head>
 <body>

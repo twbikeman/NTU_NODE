@@ -104,3 +104,11 @@ ref.set({},{merger: true});
 
 let ref = db.collection("message");
 ref.add();
+
+serverless
+
+onclick = "post();"
+
+let name = document.querySelector("#name").value;
+
+window.addEventListener("load", get);
